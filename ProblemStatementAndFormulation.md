@@ -40,13 +40,11 @@ This can be written as a shorthand like this:
 
 $$\textbf{W}^{L_2} \textbf{X} = \textbf{A}$$
 
-## **Formulation**
-
 Now for our MILP formulation, we need to have a binary variable for each node in each level, this variable indicates whether to this neuron in the network or leave it out.
 
 so for each level $L_{i}$ with $m$ neurons, we have a vector of binary vars.
 
-$$Z_{i} =
+$$Z_{L_{i}} =
 \begin{bmatrix}
 z_1\\
 z_2\\
@@ -54,4 +52,36 @@ z_2\\
 z_m
 \end{bmatrix}$$
 
-We are also going to say that removing a neuron corrsiponds to zeroing out all incoming and outgoing weights,
+We are also going to say that removing a neuron corresponds to zeroing out all incoming and outgoing weights.
+
+Lets say that $\textbf{W}^{L_{2}}$ is the weights matrix that connects between $L_1$ and $L_2$.
+Then the following matrix multiplication corresponds to zeroing out the apropriate weights depending on which neurons we want to take.
+
+$$
+\hat{\textbf{W}}^{L_2} = \textbf{W}^{L_2}\circ{(Z_{L_{2}}Z_{L_{1}}^{T})}^T
+$$
+
+Note: $\circ$ denotes the hadamard product (element wise matrix multiplication)
+
+now with this in mind we can start with the formulation
+## **Formulation**
+**Sets and indices**
+
+$\mathcal{L}$: Set of layers in the neural network. <br>
+$l$: An arbitrary element in $\mathcal{L}$
+
+$\mathcal{Y}$: Set for true data points we are comparing against <br> 
+$y$: An arbitrary element in $\mathcal{Y}$
+
+**Data**
+
+$\textbf{W}^l, l \in \mathcal{L}$ Weight matrices for each layer of the network.
+
+$\textbf{Y}_{y}, y \in \mathcal{Y}$ True data points we test against.
+
+**Decision variables**
+
+
+**Objective function**
+
+**S.T.**
