@@ -1,0 +1,7 @@
+numpy
+glob2
+pandas
+docplex
+cplex
+torch
+matplotlib
