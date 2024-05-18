@@ -102,23 +102,24 @@ $C$ Number of classes in the data set.
 $Z = \{z_{ij}| 1 \le i \le m, 1 \le j \le m, \}$ Binary decision variable for each neuron in each layer in the network.
 
 
-$
-\hat{\textbf{W}}^{L_2} = \textbf{W}^{L_2}\circ{(Z_{L_{2}}Z_{L_{1}}^{T})}^T$ Defining New weights based on included and excluded neurons.
+$$
+\hat{\textbf{W}}^{L_2} = \textbf{W}^{L_2}\circ{(Z_{L_{2}}Z_{L_{1}}^{T})}^T$$ Defining New weights based on included and excluded neurons.
 
 
-$\hat{\textbf{Y}}_{y \in \mathcal{Y}} = softmax(\prod^{l \in \mathcal{L}}{\hat{\textbf{W}}^{L_l}}  \textbf{X}_{x})$ Predicted labels using new weights.
+$$ 
+\hat{\textbf{Y}}_{y \in \mathcal{Y}} = softmax(\prod^{l \in \mathcal{L}}{\hat{\textbf{W}}^{L_l}}  \textbf{X}_{x})$$ Predicted labels using new weights.
 
 **Objective function**
 
 We Decided to use coross entropy loss.
 
-$\mathrm{Min} - \sum_{y \in \mathcal{Y}}\sum_{c \in \mathcal{C}}\textbf{Y}_{y, c}\log(\hat{\textbf{Y}}_{y, c}) $
+$$ \mathrm{Min} - \sum_{y \in \mathcal{Y}}\sum_{c \in \mathcal{C}}\textbf{Y}_{y, c}\log(\hat{\textbf{Y}}_{y, c}) $$
 
 **S.T.**
 
-$
+$$
 \begin{gather}
 \sum_{z \in Z} z = PN, \text{Ensure the number of selected neurons is less than or equal} \\
 z \in \{0, 1\} \forall z \in Z, \text{Binary constraint}
 \end{gather}
-$
+$$
