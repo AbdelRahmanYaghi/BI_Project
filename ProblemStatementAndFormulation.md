@@ -70,18 +70,55 @@ now with this in mind we can start with the formulation
 $\mathcal{L}$: Set of layers in the neural network. <br>
 $l$: An arbitrary element in $\mathcal{L}$
 
-$\mathcal{Y}$: Set for true data points we are comparing against <br> 
+$\mathcal{X}$: Set for data points we are comparing against <br> 
+$x$: An arbitrary element in $\mathcal{X}$
+
+$\mathcal{Y}$: Set for true data labels we are comparing against <br> 
 $y$: An arbitrary element in $\mathcal{Y}$
+
+$\mathcal{C}$: Set of classes in the dataset.<br> 
+$c$: An arbitrary element in $\mathcal{C}$
 
 **Data**
 
 $\textbf{W}^l, l \in \mathcal{L}$ Weight matrices for each layer of the network.
 
-$\textbf{Y}_{y}, y \in \mathcal{Y}$ True data points we test against.
+$\textbf{X}_{x}, x \in \mathcal{X}$ Data points we test against.
+
+$\textbf{Y}_{y}, y \in \mathcal{Y}$ True data labels we test against.
+
+$\textbf{S}_{l}, l \in \mathcal{L}$ Number of neurons in each layer.
+
+$m = max(S_l), \forall l \in \mathcal{L}$ size of the largest layer in the network
+
+$N$ Total number of neurons in the network.
+
+$P$ Percentage of neurons to keep.
+
+$C$ Number of classes in the data set.
 
 **Decision variables**
 
+$Z = \{z_{ij}| 1 \le i \le m, 1 \le j \le m, \}$ Binary decision variable for each neuron in each layer in the network.
+
+
+$
+\hat{\textbf{W}}^{L_2} = \textbf{W}^{L_2}\circ{(Z_{L_{2}}Z_{L_{1}}^{T})}^T$ Defining New weights based on included and excluded neurons.
+
+
+$\hat{\textbf{Y}}_{y \in \mathcal{Y}} = softmax(\prod^{l \in \mathcal{L}}{\hat{\textbf{W}}^{L_l}}  \textbf{X}_{x})$ Predicted labels using new weights.
 
 **Objective function**
 
+We Decided to use coross entropy loss.
+
+$\mathrm{Min} - \sum_{y \in \mathcal{Y}}\sum_{c \in \mathcal{C}}\textbf{Y}_{y, c}\log(\hat{\textbf{Y}}_{y, c}) $
+
 **S.T.**
+
+$
+\begin{gather}
+\sum_{z \in Z} z = PN, \text{Ensure the number of selected neurons is less than or equal} \\
+z \in \{0, 1\} \forall z \in Z, \text{Binary constraint}
+\end{gather}
+$
