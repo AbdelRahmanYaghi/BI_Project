@@ -99,9 +99,9 @@ $C$ Number of classes in the data set.
 
 **Decision variables**
 
-$$
+$
 Z = \{z_{ij}| 1 \le i \le m, 1 \le j \le m, \}
-$$
+$
 Binary decision variable for each neuron in each layer in the network.
 
 
