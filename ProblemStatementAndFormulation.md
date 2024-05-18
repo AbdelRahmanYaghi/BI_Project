@@ -102,13 +102,13 @@ $C$ Number of classes in the data set.
 $$
 Z = \{z_{ij}| 1 \le i \le m, 1 \le j \le m, \}
 $$
- Binary decision variable for each neuron in each layer in the network.
+Binary decision variable for each neuron in each layer in the network.
 
 
 $$
 \hat{\textbf{W}}^{L_2} = \textbf{W}^{L_2}\circ{(Z_{L_{2}}Z_{L_{1}}^{T})}^T
 $$
- Defining New weights based on included and excluded neurons.
+Defining New weights based on included and excluded neurons.
 
 
 $$
